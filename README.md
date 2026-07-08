@@ -31,6 +31,7 @@
 | 部署 | Docker Compose | 一条命令启动全部服务 |
 
 对接的大模型：阿里云百炼（GLM-5 对话模型 + text-embedding-v3 向量模型）。
+可以更换为其他模型。
 
 ## 项目结构
 
@@ -151,14 +152,4 @@ npm run dev
 
 详细接口文档看 `docs/api.md`。
 
-## 架构简图
 
-```
-浏览器 → Nginx(:80) → Spring Boot(:8080) → MySQL / Redis / Elasticsearch
-                              ↓
-                       阿里云百炼 LLM API
-```
-
-## License
-
-MIT
