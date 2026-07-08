@@ -1,0 +1,42 @@
+# ============================================================
+# 智能问答系统 - 后端服务 Dockerfile
+# 多阶段构建：Maven编译 -> JRE运行
+# ============================================================
+
+# ---------- Stage 1: Maven 构建 ----------
+FROM maven:3.9-eclipse-temurin-21 AS builder
+
+WORKDIR /build
+
+# 先复制 pom.xml，利用 Docker 缓存层加速依赖下载
+COPY backend/pom.xml .
+
+# 下载依赖（若 pom.xml 未变更则使用缓存）
+RUN mvn dependency:go-offline -B
+
+# 复制源代码
+COPY backend/src ./src
+
+# 执行 Maven 构建，跳过测试
+RUN mvn clean package -DskipTests -B
+
+# ---------- Stage 2: JRE 运行 ----------
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+# 设置时区
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# 从构建阶段复制 JAR 文件
+COPY --from=builder /build/target/*.jar app.jar
+
+# 暴露应用端口
+EXPOSE 8080
+
+# JVM 参数优化
+ENV JAVA_OPTS="-Xms256m -Xmx512m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Djava.security.egd=file:/dev/./urandom"
+
+# 启动命令
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]

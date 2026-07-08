@@ -1,0 +1,28 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+.vscode
+*.iml
+
+# Build artifacts
+backend/target
+frontend/node_modules
+frontend/dist
+
+# Docker
+docker/
+
+# Docs
+docs/
+*.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+*.log
