@@ -1,4 +1,4 @@
-<img width="1920" height="912" alt="QQ20260708-220557" src="https://github.com/user-attachments/assets/013b871e-382d-4f14-a688-dff96688b8a1" /># AI Agent System
+# AI Agent System
 
 智能问答平台，基于大语言模型（LLM）和检索增强生成（RAG）技术，为团队提供"问什么答什么"的知识助手服务。
 ## 😊😊如果帮助到你，记得帮忙点个Star😊😊
@@ -13,7 +13,6 @@
 <img width="1918" height="925" alt="QQ20260708-220346" src="https://github.com/user-attachments/assets/20cb97de-709b-4373-91ce-d4329ef7764e" />
 <img width="1920" height="911" alt="Snipaste_2026-07-08_22-05-35" src="https://github.com/user-attachments/assets/7fdc9cce-bfc6-42ed-8d90-94d6e215fe2c" />
 <img width="1920" height="912" alt="QQ20260708-220557" src="https://github.com/user-attachments/assets/5cb3a278-8f82-44fb-95c4-54d15968c3bd" />
-
 ## 怎么工作的
 
 用户提问 → 系统从知识库检索相关内容 → 把"问题 + 检索到的资料"一起发给大模型 → 大模型生成回答 → 流式返回给用户。
